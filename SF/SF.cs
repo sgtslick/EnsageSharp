@@ -75,29 +75,33 @@
             text.Dispose();
         }
 
-        private static void Drawing_OnEndScene(EventArgs args) {
-			if (Drawing.Direct3DDevice9 == null || Drawing.Direct3DDevice9.IsDisposed || !Game.IsInGame) {
-				return;
-			}
+        private static void Drawing_OnEndScene(EventArgs args)
+        {
+            if (Drawing.Direct3DDevice9 == null || Drawing.Direct3DDevice9.IsDisposed || !Game.IsInGame)
+            {
+                return;
+            }
 
-			var player = ObjectMgr.LocalPlayer;
-			if (player == null || player.Team == Team.Observer) {
-				return;
-			}
-			var addstr = "[ KiKRee SF Helper: ";
-			addstr += enabled ? "Enabled" : "Disabled";
-			addstr += onlyKills ? ", Only kills" : "";
-			addstr += active ? ", Active" : "";
-			addstr += " ]";
+            var player = ObjectMgr.LocalPlayer;
+            if (player == null || player.Team == Team.Observer)
+            {
+                return;
+            }
+            var addstr = "[ KiKRee SF Helper: ";
+            addstr += enabled ? "Enabled" : "Disabled";
+            addstr += onlyKills ? ", Only kills" : "";
+            addstr += active ? ", Active" : "";
+            addstr += " ]";
             addstr += " P - Toggle, L - Only Kills, D - Auto Raze";
 
-			text.DrawText(null, addstr, 5, 40, Color.DarkGreen);
+            text.DrawText(null, addstr, 5, 40, Color.DarkGreen);
 
-			if (HeroPos != new Vector3(0, 0, 0)) {
-				Vector2 drawPos = Drawing.WorldToScreen(HeroPos);
-				if (active) text.DrawText(null, "[TARGET]", (int) drawPos.X, (int) drawPos.Y, Color.Red);
-			}
-		}
+            if (HeroPos != new Vector3(0, 0, 0))
+            {
+                Vector2 drawPos = Drawing.WorldToScreen(HeroPos);
+                if (active) text.DrawText(null, "[TARGET]", (int)drawPos.X, (int)drawPos.Y, Color.Red);
+            }
+        }
 
         private static void Drawing_OnPostReset(EventArgs args)
         {
@@ -189,15 +193,23 @@
         {
             if (!Game.IsChatOpen)
             {
+                if (Game.IsKeyDown(System.Windows.Input.Key.D))
+                {
+                    active = true;
+                }
+                else
+                {
+                    active = false;
+                }
                 switch (args.Msg)
                 {
                     case (uint)Utils.WindowsMessages.WM_KEYDOWN:
-                        switch (args.WParam)
+                        /* switch (args.WParam)
                         {
                             case 'D':
                                 active = true;
                                 break;
-                        }
+                        }*/
                         break;
                     case (uint)Utils.WindowsMessages.WM_KEYUP:
                         switch (args.WParam)
@@ -208,9 +220,10 @@
                             case 'L':
                                 onlyKills = !onlyKills;
                                 break;
-                            case 'D':
-                                active = false;
-                                break;
+                            /*
+                        case 'D':
+                            active = false;
+                            break;*/
                         }
                         break;
                 }
