@@ -29,8 +29,6 @@
         private static bool enabled = true;
         private static bool onlyKills = false;
 
-        private static Vector3 HeroPos = new Vector3(0, 0, 0);
-
         private static Hero me;
 
         private static Ability[] shadowRaze = new Ability[3];
@@ -96,11 +94,6 @@
 
             text.DrawText(null, addstr, 5, 40, Color.DarkGreen);
 
-            if (HeroPos != new Vector3(0, 0, 0))
-            {
-                Vector2 drawPos = Drawing.WorldToScreen(HeroPos);
-                if (active) text.DrawText(null, "[TARGET]", (int)drawPos.X, (int)drawPos.Y, Color.Red);
-            }
         }
 
         private static void Drawing_OnPostReset(EventArgs args)
@@ -164,7 +157,6 @@
                 if (enemyHeroes.Length > 0)
                 {
                     var targetHero = enemyHeroes.First();
-                    HeroPos = targetHero.Position;
 
                     var heroDistance = me.Distance2D(RazeRange(targetHero));
 
@@ -180,10 +172,6 @@
                     {
                         CastRaze(2, targetHero);
                     }
-                }
-                else
-                {
-                    HeroPos = new Vector3(0, 0, 0);
                 }
             }
 
@@ -270,6 +258,10 @@
                         return;
                     }
                 }
+                //
+                ParticleEffect eff = target.AddParticleEffect("particles/items_fx/aura_shivas.vpcf");
+                new Timer(new TimerCallback(delegate(object e){ eff.Dispose(); }), null, 1000, 0);
+                //
                 me.Attack(target);
                 raze.UseAbility();
                 Utils.Sleep(200, "raze");
