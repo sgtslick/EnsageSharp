@@ -194,13 +194,10 @@
             if (!Game.IsChatOpen)
             {
                 if (Game.IsKeyDown(System.Windows.Input.Key.D))
-                {
                     active = true;
-                }
                 else
-                {
                     active = false;
-                }
+                //
                 switch (args.Msg)
                 {
                     case (uint)Utils.WindowsMessages.WM_KEYDOWN:
@@ -223,7 +220,8 @@
                             /*
                         case 'D':
                             active = false;
-                            break;*/
+                            break;
+                             */
                         }
                         break;
                 }
