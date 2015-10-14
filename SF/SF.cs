@@ -258,7 +258,7 @@
                 ParticleEffect eff = target.AddParticleEffect("particles/items_fx/aura_shivas.vpcf");
                 new Timer(new TimerCallback(delegate(object e){ eff.Dispose(); }), null, 1000, 0);
                 //
-                me.Follow(target);
+                me.Attack(target);
                 raze.UseAbility();
                 Utils.Sleep(800, "raze");
             }
