@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Drawing;
     using System.Linq;
 
     using Ensage;
     using Ensage.Common;
-    using System.Threading;
     using Ensage.Common.Extensions;
 
     using SharpDX;
