@@ -261,7 +261,6 @@
                 //
                 me.Attack(target);
                 raze.UseAbility();
-                me.Stop(true);
                 Utils.Sleep(800 + Game.Ping, "raze");
             }
         }
