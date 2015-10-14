@@ -88,10 +88,10 @@
             {
                 return;
             }
-            
+
             if (loaded && me.ClassID == ClassID.CDOTA_Unit_Hero_Nevermore)
             {
-                var addstr = "[ KiKRee SF Helper ("+VERSION+"): ";
+                var addstr = "[ KiKRee SF Helper (" + VERSION + "): ";
                 addstr += enabled ? "Enabled" : "Disabled";
                 addstr += onlyKills ? ", Only kills" : "";
                 addstr += active ? ", Active" : "";
@@ -126,13 +126,13 @@
                 shadowRaze[0] = me.Spellbook.SpellQ;
                 shadowRaze[1] = me.Spellbook.SpellW;
                 shadowRaze[2] = me.Spellbook.SpellE;
-                Console.WriteLine("SF Helper ("+VERSION+"): Loaded!");
+                Console.WriteLine("SF Helper (" + VERSION + "): Loaded!");
             }
 
             if (!Game.IsInGame || me == null || me.ClassID != ClassID.CDOTA_Unit_Hero_Nevermore)
             {
                 loaded = false;
-                Console.WriteLine("SF Helper ("+VERSION+"): Unloaded!");
+                Console.WriteLine("SF Helper (" + VERSION + "): Unloaded!");
                 return;
             }
 
@@ -188,10 +188,8 @@
         {
             if (!Game.IsChatOpen)
             {
-                if (Game.IsKeyDown(System.Windows.Input.Key.D))
-                    active = true;
-                else
-                    active = false;
+                if (Game.IsKeyDown(System.Windows.Input.Key.D)) active = true;
+                else active = false;
                 //
                 switch (args.Msg)
                 {
@@ -256,11 +254,15 @@
                 }
                 //
                 ParticleEffect eff = target.AddParticleEffect("particles/items_fx/aura_shivas.vpcf");
-                new Timer(new TimerCallback(delegate(object e){ eff.Dispose(); }), null, 1000, 0);
+                new Timer(new TimerCallback(delegate(object e)
+                {
+                    eff.Dispose();
+                }), null, 1000, 0);
                 //
                 me.Attack(target);
                 raze.UseAbility();
-                Utils.Sleep(800, "raze");
+                me.Stop(true);
+                Utils.Sleep(800 + Game.Ping, "raze");
             }
         }
         private static float CheckRazeDamage(int number, Unit hero)
