@@ -59,19 +59,32 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>A031ED3A4F0B642FCB09C883BE1F4BE2B67768D7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>14CE089DAB5A3431FC27EC1B29698283F9837747</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>techies_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>sfhelper.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="sfhelper.snk" />
+    <None Include="SF_TemporaryKey.pfx" />
     <None Include="techies_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
