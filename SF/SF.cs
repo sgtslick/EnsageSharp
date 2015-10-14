@@ -81,18 +81,23 @@
             }
 
             var player = ObjectMgr.LocalPlayer;
+
             if (player == null || player.Team == Team.Observer)
             {
                 return;
             }
-            var addstr = "[ KiKRee SF Helper: ";
-            addstr += enabled ? "Enabled" : "Disabled";
-            addstr += onlyKills ? ", Only kills" : "";
-            addstr += active ? ", Active" : "";
-            addstr += " ]";
-            addstr += " P - Toggle, L - Only Kills, D - Auto Raze";
+            
+            if (loaded && me.ClassID == ClassID.CDOTA_Unit_Hero_Nevermore)
+            {
+                var addstr = "[ KiKRee SF Helper: ";
+                addstr += enabled ? "Enabled" : "Disabled";
+                addstr += onlyKills ? ", Only kills" : "";
+                addstr += active ? ", Active" : "";
+                addstr += " ]";
+                addstr += " P - Toggle, L - Only Kills, D - Auto Raze";
 
-            text.DrawText(null, addstr, 5, 40, Color.DarkGreen);
+                text.DrawText(null, addstr, 5, 40, Color.DarkGreen);
+            }
 
         }
 
