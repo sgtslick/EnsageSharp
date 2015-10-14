@@ -21,6 +21,8 @@
 
         #region Static Fields
 
+        private static string VERSION = "1.0.0.2";
+
         private static readonly Dictionary<Unit, ParticleEffect> Effects = new Dictionary<Unit, ParticleEffect>();
 
         private static bool loaded;
@@ -89,7 +91,7 @@
             
             if (loaded && me.ClassID == ClassID.CDOTA_Unit_Hero_Nevermore)
             {
-                var addstr = "[ KiKRee SF Helper: ";
+                var addstr = "[ KiKRee SF Helper ("+VERSION+"): ";
                 addstr += enabled ? "Enabled" : "Disabled";
                 addstr += onlyKills ? ", Only kills" : "";
                 addstr += active ? ", Active" : "";
@@ -124,13 +126,13 @@
                 shadowRaze[0] = me.Spellbook.SpellQ;
                 shadowRaze[1] = me.Spellbook.SpellW;
                 shadowRaze[2] = me.Spellbook.SpellE;
-                Console.WriteLine("SF Helper: Loaded!");
+                Console.WriteLine("SF Helper ("+VERSION+"): Loaded!");
             }
 
             if (!Game.IsInGame || me == null || me.ClassID != ClassID.CDOTA_Unit_Hero_Nevermore)
             {
                 loaded = false;
-                Console.WriteLine("SF Helper: Unloaded!");
+                Console.WriteLine("SF Helper ("+VERSION+"): Unloaded!");
                 return;
             }
 
@@ -194,12 +196,6 @@
                 switch (args.Msg)
                 {
                     case (uint)Utils.WindowsMessages.WM_KEYDOWN:
-                        /* switch (args.WParam)
-                        {
-                            case 'D':
-                                active = true;
-                                break;
-                        }*/
                         break;
                     case (uint)Utils.WindowsMessages.WM_KEYUP:
                         switch (args.WParam)
@@ -210,11 +206,6 @@
                             case 'L':
                                 onlyKills = !onlyKills;
                                 break;
-                            /*
-                        case 'D':
-                            active = false;
-                            break;
-                             */
                         }
                         break;
                 }
@@ -232,7 +223,7 @@
 
         private static Vector3 RazeRange(Hero ent)
         {
-            if (ent.NetworkActivity == NetworkActivity.Move && ent.CanMove())
+            if (ent.IsMoving && ent.CanMove())
             {
                 var turn = TurnRate(ent.Position) / 1000;
                 return new Vector3((float)(ent.Position.X + ent.MovementSpeed * (0.67 + turn) * Math.Cos(ent.RotationRad)), (float)(ent.Position.Y + ent.MovementSpeed * (0.67 + turn) * Math.Sin(ent.RotationRad)), ent.Position.Z);
@@ -267,9 +258,9 @@
                 ParticleEffect eff = target.AddParticleEffect("particles/items_fx/aura_shivas.vpcf");
                 new Timer(new TimerCallback(delegate(object e){ eff.Dispose(); }), null, 1000, 0);
                 //
-                me.Attack(target);
+                me.Follow(target);
                 raze.UseAbility();
-                Utils.Sleep(200, "raze");
+                Utils.Sleep(800, "raze");
             }
         }
         private static float CheckRazeDamage(int number, Unit hero)

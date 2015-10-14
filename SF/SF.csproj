@@ -78,14 +78,12 @@
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>sfhelper.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="sfhelper.snk" />
-    <None Include="SF_TemporaryKey.pfx" />
-    <None Include="techies_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ensage">
