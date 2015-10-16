@@ -115,7 +115,7 @@ namespace Kikabuz
                         }
                     }
                 }
-                if (DurWPing(0) == 0) Utils.Sleep(100, "abuze");
+                if (DurWPing(0) == 0) Utils.Sleep(300, "abuze");
                 else Utils.Sleep(DurWPing(500), "abuze");
                 queue[2]++;
             }
