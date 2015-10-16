@@ -67,6 +67,9 @@ namespace Kikabuz
                             case 'T':
                                 GoAbuze();
                                 break;
+                            case 'Y':
+                                GoAbuze(true);
+                                break;
                         }
                         break;
                 }
@@ -76,7 +79,7 @@ namespace Kikabuz
         #endregion
 
         #region Methods
-        private static void GoAbuze()
+        private static void GoAbuze(bool oBottle)
         {
             var uItems = myHero.Inventory.Items.Where(x => gItems.Contains(x.Name));
             if (uItems.Any())
@@ -90,6 +93,7 @@ namespace Kikabuz
                         {
                             case "item_bottle":
                                 queue[0] += 3;
+                                if (oBottle) queue[0] = 1;
                                 break;
                             case "item_arcane_boots":
                                 droppedUItems.Add(item);
