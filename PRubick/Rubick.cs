@@ -196,7 +196,6 @@ namespace PRubick
             if (SpellsF.Length > 0)
             {
                 Ability SpellF = SpellsF.First();
-                Console.WriteLine(SpellF.Name + " = " + SpellF.Cooldown + " = " + SpellF.CooldownLength);
                 if (SpellF.Cooldown > 10) return true;
                 return false;
             }
