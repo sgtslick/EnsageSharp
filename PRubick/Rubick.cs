@@ -64,6 +64,7 @@ namespace PRubick
             excludedHeroes.Add(ClassID.CDOTA_Unit_Hero_Nevermore);
             excludedHeroes.Add(ClassID.CDOTA_Unit_Hero_Phoenix);
             excludedHeroes.Add(ClassID.CDOTA_Unit_Hero_Axe);
+            excludedHeroes.Add(ClassID.CDOTA_Unit_Hero_EmberSpirit);
 
             // includedAbilities
             includedAbilities.Add("undying_tombstone");
