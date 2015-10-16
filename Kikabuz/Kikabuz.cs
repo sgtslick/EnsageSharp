@@ -91,6 +91,11 @@ namespace Kikabuz
                             case "item_bottle":
                                 queue[0] += 3;
                                 break;
+                            case "item_arcane_boots":
+                                droppedUItems.Add(item);
+                                myHero.DropItem(item, myHero.Position);
+                                queue[3]++;
+                                break;
                             case "item_magic_stick":
                                 droppedUItems.Add(item);
                                 myHero.DropItem(item, myHero.Position);
